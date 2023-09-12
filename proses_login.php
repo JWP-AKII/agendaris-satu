@@ -17,7 +17,7 @@ if (isset($_POST['send'])) {
       $fetch = mysqli_fetch_object($search);
       $_SESSION['login'] = true;
       $_SESSION['id'] = $fetch->id;
-      $_SESSION['nama'] = $fetch->nama;
+      $_SESSION['username'] = $fetch->username;
 
       echo "<script>alert('Antum berhasil login'); window.location.href = 'dashboard';</script>";
       exit;

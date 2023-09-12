@@ -1,16 +1,14 @@
-<?php
+<?php require_once('../template/head.php') ?>
 
-require_once '../conn.php';
+<?php require_once('../template/menu.php') ?>
 
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Dashboard</title>
-</head>
-<body>
-   <h1>Halo kamu <?= $_SESSION['nama'] ?></h1>
-</body>
-</html>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+   <!-- Page Heading -->
+   <h1 class="h3 mb-4 text-gray-800">Dashboard</h1>
+
+</div>
+<!-- /.container-fluid -->
+
+<?php require_once('../template/foot.php') ?>
