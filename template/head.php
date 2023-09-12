@@ -2,6 +2,11 @@
 
 require_once('../conn.php');
 
+if ($_SESSION['login'] != true) {
+   echo "<script>alert('Hayooo, mau ngehek dek?'); window.location.href = '../index.php';</script>";
+   exit;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +19,7 @@ require_once('../conn.php');
    <meta name="description" content="">
    <meta name="author" content="">
 
-   <title>SB Admin 2 - Blank</title>
+   <title>Panel Admin</title>
 
    <!-- Custom fonts for this template-->
    <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
