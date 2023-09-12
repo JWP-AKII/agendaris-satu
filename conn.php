@@ -7,7 +7,7 @@ date_default_timezone_set('Asia/Makassar');
 // conn DB
 $host = "localhost";
 $user = "root";
-$pass = "";
+$pass = "root";
 $dbname = "latihan_surat";
 
 $conn = mysqli_connect($host, $user, $pass, $dbname);
