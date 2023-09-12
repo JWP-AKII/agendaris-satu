@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 12, 2023 at 02:10 PM
+-- Generation Time: Sep 12, 2023 at 02:21 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -42,7 +42,7 @@ CREATE TABLE `buku` (
 CREATE TABLE `disposisi_surat` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `surat_masuk_id` int(11) NOT NULL,
+  `surat_id` int(11) NOT NULL,
   `disposisi` longtext NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -50,36 +50,20 @@ CREATE TABLE `disposisi_surat` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `surat_keluar`
+-- Table structure for table `surat`
 --
 
-CREATE TABLE `surat_keluar` (
-  `id` int(11) NOT NULL,
-  `nomor_surat` varchar(255) NOT NULL,
-  `tanggal_surat` date NOT NULL,
-  `tujuan` varchar(255) NOT NULL,
-  `nomor_agenda` varchar(255) NOT NULL,
-  `tanggal_agenda` date NOT NULL,
-  `buku_id` int(11) NOT NULL,
-  `status` enum('draft','proses','selesai','tunda') NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `surat_masuk`
---
-
-CREATE TABLE `surat_masuk` (
+CREATE TABLE `surat` (
   `id` int(11) NOT NULL,
   `nomor_surat` varchar(255) NOT NULL,
   `tanggal_surat` date NOT NULL,
   `pengirim` varchar(255) NOT NULL,
+  `penerima` varchar(255) DEFAULT NULL,
   `nomor_agenda` varchar(255) NOT NULL,
   `tanggal_agenda` date NOT NULL,
   `buku_id` int(11) NOT NULL,
   `status` enum('draft','proses','selesai','tunda') NOT NULL,
+  `tipe_surat` enum('masuk','keluar') NOT NULL DEFAULT 'masuk',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -112,20 +96,13 @@ ALTER TABLE `buku`
 --
 ALTER TABLE `disposisi_surat`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `surat_masuk_id` (`surat_masuk_id`),
+  ADD KEY `surat_masuk_id` (`surat_id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `surat_keluar`
+-- Indexes for table `surat`
 --
-ALTER TABLE `surat_keluar`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `buku_id` (`buku_id`);
-
---
--- Indexes for table `surat_masuk`
---
-ALTER TABLE `surat_masuk`
+ALTER TABLE `surat`
   ADD PRIMARY KEY (`id`),
   ADD KEY `buku_id` (`buku_id`);
 
@@ -152,15 +129,9 @@ ALTER TABLE `disposisi_surat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `surat_keluar`
+-- AUTO_INCREMENT for table `surat`
 --
-ALTER TABLE `surat_keluar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `surat_masuk`
---
-ALTER TABLE `surat_masuk`
+ALTER TABLE `surat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -178,19 +149,13 @@ ALTER TABLE `user`
 --
 ALTER TABLE `disposisi_surat`
   ADD CONSTRAINT `disposisi_surat_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `disposisi_surat_ibfk_2` FOREIGN KEY (`surat_masuk_id`) REFERENCES `surat_masuk` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `disposisi_surat_ibfk_2` FOREIGN KEY (`surat_id`) REFERENCES `surat` (`id`) ON UPDATE CASCADE;
 
 --
--- Constraints for table `surat_keluar`
+-- Constraints for table `surat`
 --
-ALTER TABLE `surat_keluar`
-  ADD CONSTRAINT `surat_keluar_ibfk_1` FOREIGN KEY (`buku_id`) REFERENCES `buku` (`id`) ON UPDATE CASCADE;
-
---
--- Constraints for table `surat_masuk`
---
-ALTER TABLE `surat_masuk`
-  ADD CONSTRAINT `surat_masuk_ibfk_1` FOREIGN KEY (`buku_id`) REFERENCES `buku` (`id`) ON UPDATE CASCADE;
+ALTER TABLE `surat`
+  ADD CONSTRAINT `surat_ibfk_1` FOREIGN KEY (`buku_id`) REFERENCES `buku` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
