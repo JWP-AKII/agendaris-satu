@@ -28,3 +28,5 @@ require_once('../conn.php');
 atau
 include_once('../conn.php');
 
+## PASTIKAN NAMA DATABASE SAMA
+
