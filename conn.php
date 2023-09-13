@@ -1,13 +1,13 @@
 <?php
 
 session_start();
-error_reporting(2);
+error_reporting(0);
 date_default_timezone_set('Asia/Makassar');
 
 // conn DB
 $host = "localhost";
 $user = "root";
-$pass = "root";
+$pass = "";
 $dbname = "latihan_surat";
 
 $conn = mysqli_connect($host, $user, $pass, $dbname);
