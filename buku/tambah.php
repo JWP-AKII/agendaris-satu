@@ -1,15 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="proses_tambah.php" method ="get">
-        <label for="">Nama Buku</label>
-        <input type="text" name ="nama">
-        <input type="submit" value ="Simpan">
-    </form>
-</body>
-</html>
+<?php require_once('../template/head.php') ?>
+
+<?php require_once('../template/menu.php') ?>
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">Tambah Buku</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="proses_tambah.php" method="post">
+                        <div class="form-group">
+                            <label for="nama">Nama Buku</label>
+                            <input type="text" required name="nama" class="form-control" id="nama">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success" name="save" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- /.container-fluid -->
+
+<?php require_once('../template/foot.php') ?>
