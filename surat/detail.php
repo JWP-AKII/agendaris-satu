@@ -15,7 +15,7 @@ $id = $_GET['id'];
 $dataQuery = mysqli_query($conn, "SELECT * FROM surat JOIN buku ON buku.id = surat.buku_id WHERE surat.id = '$id'");
 $data = mysqli_fetch_object($dataQuery);
 
-$dataDispo = mysqli_query($conn, "SELECT * FROM disposisi_surat JOIN user ON user.id = disposisi_surat.user_id WHERE surat_id = '$id' ORDER BY disposisi_surat.id DESC");
+$dataDispo = mysqli_query($conn, "SELECT *, disposisi_surat.id AS ide FROM disposisi_surat JOIN user ON user.id = disposisi_surat.user_id WHERE surat_id = '$id' ORDER BY disposisi_surat.id DESC");
 $count = mysqli_num_rows($dataDispo);
 
 $dataUser = mysqli_query($conn, "SELECT * FROM user ORDER BY id DESC");
@@ -118,7 +118,10 @@ $no = 1;
                                  <td><?= ($row->disposisi != '-') ? $row->disposisi : "<i class='text-danger'>Belum ada respon</i>" ?></td>
                                  <td>
                                     <div class="d-flex">
-                                       <a onclick="return confirm('Apakah yakin ingin menghapus ini?')" class="btn btn-danger" href="proses_hapus_disposisi.php?idx=<?= $row->id ?>"><i class="fas fa-trash"></i></a>
+                                       <?php if ($row->user_id == $_SESSION['id']) { ?>
+                                          <a href="edit_disposisi.php?id=<?= $row->ide ?>" class="btn btn-success mr-2"><i class="fas fa-pen"></i></a>
+                                          <a onclick="return confirm('Apakah yakin ingin menghapus ini?')" class="btn btn-danger" href="proses_hapus_disposisi.php?idx=<?= $row->ide ?>"><i class="fas fa-trash"></i></a>
+                                       <?php } ?>
                                     </div>
                                  </td>
                               </tr>
