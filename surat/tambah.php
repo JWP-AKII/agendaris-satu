@@ -73,6 +73,7 @@
                             <label for=""> Status :</label>
                             <select name="status" required class="custom-select custom-select-md">
                                 <option value=""> --pilih status-- </option>
+                                <option value="draft"> Draf </option>
                                 <option value="proses"> proses </option>
                                 <option value="selesai"> selesai </option>
                                 <option value="tunda"> tunda </option>

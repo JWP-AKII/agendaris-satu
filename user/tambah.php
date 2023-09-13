@@ -24,7 +24,12 @@
                 <td><input type="text" name="jabatan"></td>
             </tr>
 
-            <input type="submit" value="Tambah">          
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Tambah"> 
+                </td>
+            </tr>         
             </table>
 
 
