@@ -1,10 +1,19 @@
 <?php
 
-include '../conn.php';
+require_once('../conn.php');
 
-$id =$_POST['id'];
-$nama =$_POST['nama'];
+// update data
+if (isset($_POST['update'])) {
+   $id = $_GET['id'];
+   $nama = $_POST['nama'];
 
-mysqli_query($conn, "update buku set nama ='$nama' where id='$id'");
+   $execute = mysqli_query($conn, "UPDATE buku SET nama = '$nama' WHERE id = '$id'");
 
-header('location:index.php');
+   if ($execute) {
+      echo "<script>alert('Data Berhasil diubah :p'); window.location.href = 'index.php';</script>";
+      exit;
+   } else {
+      echo "<script>alert('Upss... Data gagal diubah'); window.location.href = 'index.php';</script>";
+      exit;
+   }
+}
