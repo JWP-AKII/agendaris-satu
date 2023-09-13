@@ -30,7 +30,7 @@ if (isset($_POST['simpan'])) {
 
     if ($data) {
         echo "perubahan berhasil";
-        // header ('location:index.php');
+        header ('location:index.php');
     } else {
         echo "perubahan gagal";
     }
