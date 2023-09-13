@@ -71,7 +71,7 @@
                         <!-- pilihan status  -->
                         <div class="form-group">
                             <label for=""> Status :</label>
-                            <select name="status" required class="custom-select custom-select-md">
+                            <select name="status" class="custom-select custom-select-md">
                                 <option value=""> --pilih status-- </option>
                                 <option value="draft"> Draf </option>
                                 <option value="proses"> proses </option>
