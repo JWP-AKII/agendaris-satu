@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 12, 2023 at 02:21 PM
+-- Generation Time: Sep 12, 2023 at 11:49 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -32,6 +32,19 @@ CREATE TABLE `buku` (
   `nama` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `buku`
+--
+
+INSERT INTO `buku` (`id`, `nama`, `created_at`) VALUES
+(1, 'Analisis Faktor-Faktor yang Mempengaruhi Keputusan Investasi di Pasar Saham', '2023-09-12 15:05:29'),
+(2, 'Pengaruh Perubahan Suku Bunga Terhadap Perilaku Konsumen di Pasar Kredit', '2023-09-12 15:05:29'),
+(3, 'Pengembangan Aplikasi Mobile Berbasis Android untuk Manajemen Tugas', '2023-09-12 15:05:29'),
+(4, 'Evaluasi Keamanan Jaringan Komputer dalam Era Internet of Things (IoT)', '2023-09-12 15:05:29'),
+(5, 'Pengaruh Metode Pembelajaran Berbasis Teknologi Terhadap Prestasi Belajar Siswa', '2023-09-12 15:05:29'),
+(6, 'Analisis Peran Guru dalam Meningkatkan Minat Baca Siswa Sekolah Dasar', '2023-09-12 15:05:29'),
+(7, 'Dampak Perubahan Iklim Terhadap Keanekaragaman Hayati di Ekosistem Hutan Hujan Tropis', '2023-09-12 15:05:29');
 
 -- --------------------------------------------------------
 
@@ -67,6 +80,14 @@ CREATE TABLE `surat` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `surat`
+--
+
+INSERT INTO `surat` (`id`, `nomor_surat`, `tanggal_surat`, `pengirim`, `penerima`, `nomor_agenda`, `tanggal_agenda`, `buku_id`, `status`, `tipe_surat`, `created_at`) VALUES
+(1, '077/BMS-VN/2023/10', '2023-09-11', 'Niko Belic', 'Roman Belic', 'POS.100/20/SD', '2023-09-14', 1, 'draft', 'masuk', '2023-09-12 15:09:32'),
+(2, '190/BIMTEK/IJ/18763.2', '2023-09-12', 'Franklin Clinton', 'Michael De Santa', '0972625511', '2023-09-12', 4, 'proses', 'masuk', '2023-09-12 15:11:22');
+
 -- --------------------------------------------------------
 
 --
@@ -75,11 +96,21 @@ CREATE TABLE `surat` (
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `jabatan` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `nama`, `username`, `password`, `jabatan`, `created_at`) VALUES
+(1, 'Sepuh 1', 'sepuh1', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'Ketua', '2023-09-12 07:16:25'),
+(2, 'Sepuh 2', 'sepuh2', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'Wakil', '2023-09-12 07:16:25'),
+(3, 'Sepuh 3', 'sepuh3', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'Sekretaris', '2023-09-12 07:16:25');
 
 --
 -- Indexes for dumped tables
@@ -120,7 +151,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `disposisi_surat`
@@ -132,13 +163,13 @@ ALTER TABLE `disposisi_surat`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
