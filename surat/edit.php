@@ -32,7 +32,7 @@ $result= mysqli_fetch_assoc($data);
                
                 <div class= "form-group">
                     <label for="tanggal_surat">tanggal_surat</label>
-                    <input type="text" name="tanggal_surat" class="form-control" value="<?php echo $result['tanggal_surat']?>">
+                    <input type="date" name="tanggal_surat" class="form-control" value="<?php echo $result['tanggal_surat']?>">
                 </div>
                 
                 <div class= "form-group">
@@ -52,7 +52,7 @@ $result= mysqli_fetch_assoc($data);
                 
                 <div class= "form-group">
                     <label for="tanggal_agenda">Tanggal Agenda</label>
-                    <input type="text" name="tanggal_agenda" class="form-control" value="<?php echo $result['tanggal_agenda']?>">
+                    <input type="date" name="tanggal_agenda" class="form-control" value="<?php echo $result['tanggal_agenda']?>">
                 </div>
                 
                 <div class= "form-group">
