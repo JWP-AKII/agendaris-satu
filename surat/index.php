@@ -27,6 +27,9 @@ $result = mysqli_query($conn, $sql);
                         <table class="table display text-nowrap table-striped">
                             <thead>
                                 <th>No</th>
+                                <th>
+                                    <center>Aksi</center>
+                                </th>
                                 <th>Nomor Surat</th>
                                 <th>Tanggal Surat </th>
                                 <th>Pengirim </th>
@@ -36,7 +39,6 @@ $result = mysqli_query($conn, $sql);
                                 <th>Nama Buku </th>
                                 <th>Status</th>
                                 <th>Tipe Surat</th>
-                                <th>Aksi</th>
                             </thead>
 
                             <tbody>
@@ -44,6 +46,13 @@ $result = mysqli_query($conn, $sql);
                                 <?php foreach ($result as $key => $data) : ?>
                                     <tr>
                                         <td><?php echo $key + 1 ?></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a href="detail.php?id=<?php echo $data['ide'] ?>" class="btn btn-secondary mr-2"> Detail </a>
+                                                <a href="edit.php?id=<?php echo $data['ide'] ?>" class="btn btn-warning mr-2"> Edit </a>
+                                                <a href="proses_hapus.php?id=<?php echo $data['ide'] ?>" class="btn btn-danger"> Hapus </a>
+                                            </div>
+                                        </td>
                                         <td><?php echo $data['nomor_surat'] ?></td>
                                         <td><?php echo $data['tanggal_surat'] ?></td>
                                         <td><?php echo $data['pengirim'] ?></td>
@@ -53,13 +62,6 @@ $result = mysqli_query($conn, $sql);
                                         <td><?php echo $data['nama'] ?></td>
                                         <td><?php echo $data['status'] ?></td>
                                         <td><?php echo $data['tipe_surat'] ?></td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="detail.php?id=<?php echo $data['ide'] ?>" class="btn btn-secondary mr-2"> Detail </a>
-                                                <a href="edit.php?id=<?php echo $data['ide'] ?>" class="btn btn-warning mr-2"> Edit </a>
-                                                <a href="proses_hapus.php?id=<?php echo $data['ide'] ?>" class="btn btn-danger"> Hapus </a>
-                                            </div>
-                                        </td>
                                     </tr>
                                 <?php endforeach ?>
 

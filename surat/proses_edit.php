@@ -29,8 +29,8 @@ if (isset($_POST['simpan'])) {
     $data= mysqli_query($conn, $sql);
 
     if ($data) {
-        echo "perubahan berhasil";
-        header ('location:index.php');
+        echo "<script>alert('Data Berhasil diubah :p'); window.location.href = 'index.php';</script>";
+        exit;
     } else {
         echo "perubahan gagal";
     }
