@@ -48,21 +48,24 @@
                         </div>
 
                         <!-- option buku -->
-                        <select name="buku" class="custom-select custom-select-lg mb-3">
-                            <option value="">--pilih buku--</option>
+                        <div class="form-group">
+                            <label for=""> Buku :</label>
+                            <select name="buku" class="custom-select custom-select-md">
+                                <option value="">--pilih buku--</option>
 
-                            <!-- pengulangan untuk opsi pemilihan buku -->
-                            <?php
-                            $datax = "SELECT * FROM buku";
-                            $pilih = mysqli_query($conn, $datax);
+                                <!-- pengulangan untuk opsi pemilihan buku -->
+                                <?php
+                                $datax = "SELECT * FROM buku";
+                                $pilih = mysqli_query($conn, $datax);
 
-                            foreach ($pilih as $key) : ?>
+                                foreach ($pilih as $key) : ?>
 
-                                <option value="<?= $key['id'] ?>"> <?= $key['nama'] ?> </option>
+                                    <option value="<?= $key['id'] ?>"> <?= $key['nama'] ?> </option>
 
-                                <!-- akhir pengulangan -->
-                            <?php endforeach ?>
-                        </select>
+                                    <!-- akhir pengulangan -->
+                                <?php endforeach ?>
+                            </select>
+                        </div>
 
 
                         <!-- pilihan status  -->
@@ -75,11 +78,14 @@
                         </select>
 
                         <!-- pili tipe surat -->
-                        <select name="tipe_surat" class="custom-select custom-select-lg mb-3">
-                            <option value=""> --pilih tipe surat-- </option>
-                            <option value="masuk"> masuk </option>
-                            <option value="keluar"> keluar </option>
-                        </select>
+                        <div class="form-group">
+                            <label for="">Tipe Surat :</label>
+                            <select name="tipe_surat" class="custom-select custom-select-md">
+                                <option value=""> --pilih tipe surat-- </option>
+                                <option value="masuk"> masuk </option>
+                                <option value="keluar"> keluar </option>
+                            </select>
+                        </div>
 
                         <!-- tombol tambah data -->
                         <button type="submit" name="tambah" class="btn btn-primary"> Tambah Data </button>
