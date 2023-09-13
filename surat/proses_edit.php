@@ -16,7 +16,7 @@ if (isset($_POST['simpan'])) {
     $tisurat= $_POST['tipe_surat'];
 
     $sql= "UPDATE surat 
-            SET nomor_surat='$nosurat,'
+            SET nomor_surat='$nosurat',
             tanggal_surat='$tasurat',
             pengirim='$pengirim',
             penerima='$penerima',
