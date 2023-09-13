@@ -1,9 +1,17 @@
 <?php
 
-include '../conn.php';
+require_once('../conn.php');
 
-$nama =$_GET['nama'];
+if (isset($_POST['save'])) {
+   $nama = $_POST['nama'];
 
-mysqli_query($conn, "insert into buku values('', '$nama', '')");
+   $execute = mysqli_query($conn, "INSERT INTO buku(nama) VALUES('$nama')");
 
-header('location:index.php');
+   if ($execute) {
+      echo "<script>alert('Data Berhasil disimpan :p'); window.location.href = 'index.php';</script>";
+      exit;
+   } else {
+      echo "<script>alert('Upss... Data gagal disimpan'); window.location.href = 'index.php';</script>";
+      exit;
+   }
+}

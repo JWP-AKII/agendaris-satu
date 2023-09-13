@@ -1,42 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit</title>
-</head>
-<body>
-    
-    <h2>Edit</h2>
+<?php require_once('../template/head.php') ?>
 
-    <?php
+<?php require_once('../template/menu.php') ?>
 
-        include '../conn.php';
+<?php
+$id = $_GET['id'];
+$dataGet = mysqli_query($conn, "SELECT * FROM buku WHERE id = '$id'");
+$data = mysqli_fetch_object($dataGet);
 
-        $id =$_GET['id'];
-        $data =mysqli_query($conn, "select * from buku where id='$id'");
-        while($d = mysqli_fetch_array($data)) { ?>
+?>
 
-    <form method ="post" action="proses_edit.php">
-        <table>
-            <tr>
-                <td>Nama Buku</td>
-                <td>
-                    <input type="hidden" name="id" value="<?php echo $d['id']; ?>">
-                    <input type="text" name="nama" value="<?php echo $d['nama']; ?>">
-                </td>
-            </tr>
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-            <tr>
-                <td></td>
-                <td>
-                    <input type="submit" value="SIMPAN">
-                </td>
-            </tr>
-        </table>
-    </form>
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">Edit Buku</h1>
 
-    <?php } ?>
-    
-</body>
-</html>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="proses_edit.php?id=<?= $id ?>" method="post">
+                        <div class="form-group">
+                            <label for="nama">Nama Buku</label>
+                            <input type="text" required value="<?= $data->nama ?>" name="nama" class="form-control" id="nama">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success" name="update" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- /.container-fluid -->
+
+<?php require_once('../template/foot.php') ?>
