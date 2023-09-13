@@ -85,89 +85,90 @@ $no = 1;
       </div>
    </div>
 
-   <div class="row">
-      <div class="col-md-12">
-         <div class="card">
-            <div class="card-body">
-               <div class="d-flex justify-content-end mb-3">
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">
-                     Tambah Disposisi
-                  </button>
-               </div>
-               <table class="table table-hover table-striped">
-                  <thead>
-                     <tr>
-                        <th>No.</th>
-                        <th>Pengguna</th>
-                        <th>Disposisi</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <?php if ($count > 0) { ?>
-                        <?php while ($row = mysqli_fetch_object($dataDispo)) : ?>
-                           <tr>
-                              <td><?= $no++ ?></td>
-                              <td><?= $row->nama ?? $row->username ?></td>
-                              <td><?= $row->disposisi ?></td>
-                           </tr>
-                        <?php endwhile; ?>
-                     <?php } else { ?>
+   <?php if ($data->status != 'draft' || $data->status != 'selesai') { ?>
+      <div class="row">
+         <div class="col-md-12">
+            <div class="card">
+               <div class="card-body">
+                  <div class="d-flex justify-content-end mb-3">
+                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">
+                        Tambah Disposisi
+                     </button>
+                  </div>
+                  <table class="table table-hover table-striped">
+                     <thead>
                         <tr>
-                           <td colspan="3" align="center">-- Belum ada disposisi --</td>
+                           <th>No.</th>
+                           <th>Pengguna</th>
+                           <th>Disposisi</th>
                         </tr>
-                     <?php } ?>
-                  </tbody>
-               </table>
+                     </thead>
+                     <tbody>
+                        <?php if ($count > 0) { ?>
+                           <?php while ($row = mysqli_fetch_object($dataDispo)) : ?>
+                              <tr>
+                                 <td><?= $no++ ?></td>
+                                 <td><?= $row->nama ?? $row->username ?></td>
+                                 <td><?= $row->disposisi ?></td>
+                              </tr>
+                           <?php endwhile; ?>
+                        <?php } else { ?>
+                           <tr>
+                              <td colspan="3" align="center">-- Belum ada disposisi --</td>
+                           </tr>
+                        <?php } ?>
+                     </tbody>
+                  </table>
+               </div>
             </div>
          </div>
       </div>
-   </div>
+   <?php } ?>
 
    <div class="modal fade" id="modalAdd" tabindex="-1" aria-labelledby="modalAddLabel" aria-hidden="true">
       <div class="modal-dialog">
-         <form action="" method="post">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <h5 class="modal-title" id="modalAddLabel">Tambah Disposisi</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                  </button>
-               </div>
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="modalAddLabel">Tambah Disposisi</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
                <form action="proses_tambah_disposisi.php?id=<?= $id ?>" method="post">
-                  <div class="modal-body">
-                     <input type="hidden" name="<?= $id ?>">
-                     <div class="form-group">
-                        <label for="userInput1">Teruskan ke</label>
-                        <select class="form-control" name="user" id="userInput1">
-                           <option value="">-- Pilih User --</option>
-                           <?php while ($a = mysqli_fetch_object($dataUser)) { ?>
-                              <option value="<?= $a->id ?>"><?= $a->nama ?></option>
-                           <?php } ?>
-                        </select>
-                     </div>
-
-                     <div class="form-group">
-                        <label for="status">Status</label>
-                        <select class="form-control" name="status" id="status">
-                           <option value="">-- Pilih Status --</option>
-                           <option value="proses">PROSES</option>
-                           <option value="selesai">SELESAI</option>
-                           <option value="tunda">TUNDA</option>
-                        </select>
-                     </div>
-
-                     <div class="form-group">
-                        <label for="disposisi">Disposisi</label>
-                        <textarea class="form-control" required name="disposisi" id="disposisi" rows="5"></textarea>
-                     </div>
+                  <input type="hidden" name="id" value="<?= $id ?>">
+                  <div class="form-group">
+                     <label for="userInput1">Teruskan ke</label>
+                     <select class="form-control" required name="user" id="userInput1">
+                        <option value="">-- Pilih User --</option>
+                        <?php while ($a = mysqli_fetch_object($dataUser)) { ?>
+                           <option value="<?= $a->id ?>"><?= $a->nama ?></option>
+                        <?php } ?>
+                     </select>
                   </div>
-                  <div class="modal-footer">
-                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                     <button type="submit" class="btn btn-primary">Submit</button>
+
+                  <div class="form-group">
+                     <label for="status">Status</label>
+                     <select class="form-control" required name="status" id="status">
+                        <option value="">-- Pilih Status --</option>
+                        <option value="proses">PROSES</option>
+                        <option value="selesai">SELESAI</option>
+                        <option value="tunda">TUNDA</option>
+                     </select>
                   </div>
+
+                  <div class="form-group">
+                     <label for="disposisi">Disposisi</label>
+                     <textarea class="form-control" required name="disposisi" id="disposisi" rows="5"></textarea>
+                  </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+               <button type="submit" name="save" class="btn btn-primary">Submit</button>
                </form>
             </div>
-         </form>
+
+         </div>
       </div>
    </div>
 
