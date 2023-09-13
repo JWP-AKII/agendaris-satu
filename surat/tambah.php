@@ -1,88 +1,95 @@
-<?php
-require_once '../conn.php';
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Data Surat</title>
-</head>
-<body>
+<?php require_once('../template/head.php') ?>
 
-<form action="proses_tambah.php" method="post">
+<?php require_once('../template/menu.php') ?>
 
-    <!-- nomor surat -->
-    <label for=""> Nomor Surat :</label>
-    <input type="text" name="nomor_surat">
-    <br>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <form action="proses_tambah.php" method="post">
 
-    <!-- tanggal surat -->
-    <label for=""> Tanggal Surat :</label>
-    <input type="date" name="tanggal_surat">
-    <br>
+                    <!-- nomor surat -->
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Nomor Surat</label>
+                        <input type="text" name="nomor_surat" class="form-control" id="exampleFormControlInput1" placeholder="Nomor Surat">
+                    </div>
 
-    <!-- pengirim surat -->
-    <label for=""> Pengirim :</label>
-    <input type="text" name="pengirim">
-    <br>
+                    
+                    <!-- tanggal surat -->
+                    <div class="form-group">
+                        <label for=""> Tanggal Surat :</label>
+                        <input type="date" name="tanggal_surat" class="form-control">
+                    </div>
 
-    <!-- penerima surat -->
-    <label for=""> Penerima :</label>
-    <input type="text" name="penerima">
-    <br>
+                    <!-- pengirim surat -->
+                    <div class="form-group">
+                        <label for=""> Pengirim :</label>
+                        <input type="text" name="pengirim" class="form-control">
+                    </div>
 
-    <!-- nomor agenda -->
-    <label for=""> Nomor Agenda :</label>
-    <input type="text" name="nomor_agenda">
-    <br>
+                    <!-- penerima surat -->
+                    <div class="form-group">
+                    
+                        <label for=""> Penerima :</label>
+                        <input type="text" name="penerima" class="form-control">
+                    </div>
 
-    <!-- tanggal agenda -->
-    <label for=""> Tanggal Agenda :</label>
-    <input type="date" name="tanggal_agenda">
-    <br>
+                    <!-- nomor agenda -->
+                    <div class="form-group">
+                        <label for=""> Nomor Agenda :</label>
+                        <input type="text" name="nomor_agenda" class="form-control">
+                    </div>
 
-    <!-- option buku -->
-    <select name="buku" id="">
-        <option value="">--pilih buku--</option>
-        
-        <!-- pengulangan untuk opsi pemilihan buku -->
-        <?php
-         $datax = "SELECT * FROM buku";
-         $pilih = mysqli_query($conn, $datax);
+                    <!-- tanggal agenda -->
+                    <div class="form-group">
+                        <label for=""> Tanggal Agenda :</label>
+                        <input type="date" name="tanggal_agenda" class="form-control">
+                    </div>
 
-         foreach ($pilih as $key ) :?>
-         
-         <option value="<?= $key['id'] ?>"> <?= $key['nama'] ?> </option>
+                    <!-- option buku -->
+                    <select name="buku" class="custom-select custom-select-lg mb-3" >
+                        <option value="">--pilih buku--</option>
+                        
+                        <!-- pengulangan untuk opsi pemilihan buku -->
+                        <?php
+                        $datax = "SELECT * FROM buku";
+                        $pilih = mysqli_query($conn, $datax);
 
-         <!-- akhir pengulangan -->
-         <?php endforeach ?>
-    </select>
+                        foreach ($pilih as $key ) :?>
+                        
+                        <option value="<?= $key['id'] ?>"> <?= $key['nama'] ?> </option>
 
-    <?php if (!$pilih) {
-        echo "data gagal terkoneksi";
-    } ?>
-    <br>
+                        <!-- akhir pengulangan -->
+                        <?php endforeach ?>
+                    </select>
 
-    <!-- pilihan status  -->
-    <select name="status" id="">
-        <option value=""> --pilih status-- </option>
-        <option value="proses"> proses </option>
-        <option value="selesai"> selesai </option>
-        <option value="tunda"> tunda </option>
-    </select>
 
-    <!-- pili tipe surat -->
-    <select name="tipe_surat" id="">
-        <option value=""> --pilih tipe surat-- </option>
-        <option value="masuk"> masuk </option>
-        <option value="keluar"> keluar </option>
-    </select>
+                    <!-- pilihan status  -->
+                    <select name="status" class="custom-select custom-select-lg mb-3">
+                        <option value=""> --pilih status-- </option>
+                        <option value="proses"> proses </option>
+                        <option value="selesai"> selesai </option>
+                        <option value="tunda"> tunda </option>
+                    </select>
 
-        <!-- tombol tambah data -->
-    <button type="submit" name="tambah"> Tambah Data </button>
+                    <!-- pili tipe surat -->
+                    <select name="tipe_surat" class="custom-select custom-select-lg mb-3">
+                        <option value=""> --pilih tipe surat-- </option>
+                        <option value="masuk"> masuk </option>
+                        <option value="keluar"> keluar </option>
+                    </select>
 
-</form>
+                        <!-- tombol tambah data -->
+                    <button type="submit" name="tambah" class="btn btn-primary"> Tambah Data </button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- /.container-fluid -->
+
+<?php require_once('../template/foot.php') ?>
 
 
 
