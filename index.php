@@ -2,10 +2,10 @@
 
 require_once('conn.php');
 
-if ($_SESSION['login'] == true) {
-   echo "<script>alert('Masih ada session. Otomatis pindah ke dashboard'); window.location.href = 'dashboard';</script>";
-   exit;
-}
+// if ($_SESSION['login'] == true) {
+//    echo "<script>alert('Masih ada session. Otomatis pindah ke dashboard'); window.location.href = 'dashboard';</script>";
+//    exit;
+// }
 
 ?>
 
