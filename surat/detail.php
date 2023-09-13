@@ -3,6 +3,9 @@
 <?php require_once('../template/menu.php') ?>
 
 <?php
+
+use Carbon\Carbon;
+
 if (empty($_GET['id'])) {
    echo "<script>window.location.href = 'index.php';</script>";
    exit;
@@ -39,7 +42,7 @@ $no = 1;
                         </li>
                         <li class="list-group-item">
                            Tanggal Surat : <br>
-                           <b><?= $data->tanggal_surat ?></b>
+                           <b><?= Carbon::parse($data->tanggal_surat)->locale('id')->isoFormat('dddd, Do MMMM YYYY') ?></b>
                         </li>
                         <li class="list-group-item">
                            Pengirim : <br>
@@ -63,7 +66,7 @@ $no = 1;
                         </li>
                         <li class="list-group-item">
                            Tanggal Agenda : <br>
-                           <b><?= $data->tanggal_agenda ?></b>
+                           <b><?= Carbon::parse($data->tanggal_agenda)->locale('id')->isoFormat('dddd, Do MMMM YYYY') ?></b>
                         </li>
                         <li class="list-group-item">
                            Buku : <br>
@@ -75,7 +78,7 @@ $no = 1;
                         </li>
                         <li class="list-group-item">
                            Tanggal Data Dibuat : <br>
-                           <b><?= $data->created_at ?></b>
+                           <b><?= Carbon::parse($data->created_at)->locale('id')->isoFormat('dddd, Do MMMM YYYY') ?></b>
                         </li>
                      </ul>
                   </div>
@@ -85,7 +88,7 @@ $no = 1;
       </div>
    </div>
 
-   <?php if ($data->status != 'draft' || $data->status != 'selesai') { ?>
+   <?php if ($data->status != 'draft') { ?>
       <div class="row">
          <div class="col-md-12">
             <div class="card">
@@ -100,7 +103,9 @@ $no = 1;
                         <tr>
                            <th>No.</th>
                            <th>Pengguna</th>
+                           <th>Jabatan</th>
                            <th>Disposisi</th>
+                           <th>Aksi</th>
                         </tr>
                      </thead>
                      <tbody>
@@ -109,7 +114,13 @@ $no = 1;
                               <tr>
                                  <td><?= $no++ ?></td>
                                  <td><?= $row->nama ?? $row->username ?></td>
-                                 <td><?= $row->disposisi ?></td>
+                                 <td><?= $row->jabatan ?></td>
+                                 <td><?= ($row->disposisi != '-') ? $row->disposisi : "<i class='text-danger'>Belum ada respon</i>" ?></td>
+                                 <td>
+                                    <div class="d-flex">
+                                       <a onclick="return confirm('Apakah yakin ingin menghapus ini?')" class="btn btn-danger" href="proses_hapus_disposisi.php?idx=<?= $row->id ?>"><i class="fas fa-trash"></i></a>
+                                    </div>
+                                 </td>
                               </tr>
                            <?php endwhile; ?>
                         <?php } else { ?>

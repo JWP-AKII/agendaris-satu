@@ -20,7 +20,8 @@ if (isset($_POST['tambah'])) {
     $result = mysqli_query($conn, $sql);
     
     if ($result) {
-        header("location:index.php");
+        echo "<script>alert('Data Berhasil diubah :p'); window.location.href = 'index.php';</script>";
+        exit;
     } else{
         echo "data gagal di tambahkan";
     }
