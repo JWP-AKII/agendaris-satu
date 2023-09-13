@@ -3,10 +3,10 @@
 require_once('../vendor/autoload.php');
 require_once('../conn.php');
 
-if ($_SESSION['login'] != true) {
-   echo "<script>alert('Hayooo, mau ngehek dek?'); window.location.href = '../index.php';</script>";
-   exit;
-}
+// if ($_SESSION['login'] != true) {
+//    echo "<script>alert('Hayooo, mau ngehek dek?'); window.location.href = '../index.php';</script>";
+//    exit;
+// }
 
 ?>
 <!DOCTYPE html>
