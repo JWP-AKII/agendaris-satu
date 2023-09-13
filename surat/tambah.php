@@ -68,6 +68,7 @@
                         <!-- pilihan status  -->
                         <select name="status" class="custom-select custom-select-lg mb-3">
                             <option value=""> --pilih status-- </option>
+                            <option value="draft"> Draft </option>
                             <option value="proses"> proses </option>
                             <option value="selesai"> selesai </option>
                             <option value="tunda"> tunda </option>
