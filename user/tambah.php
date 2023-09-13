@@ -1,38 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="proses_tambah.php" method="post">
-        <table>
+<?php require_once('../template/head.php') ?>
 
-            <tr>
-                <td>Username</td>
-                <td><input type="text" name="username"></td>
-            </tr>
+<?php require_once('../template/menu.php') ?>
 
-            <tr>
-                <td>Password</td></label>
-                <td><input type="text" name="password"></td>
-            </tr>
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-            <tr>
-                <td>Jabatan</td>
-                <td><input type="text" name="jabatan"></td>
-            </tr>
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">Tambah User</h1>
 
-            <tr>
-                <td></td>
-                <td>
-                    <input type="submit" value="Tambah"> 
-                </td>
-            </tr>         
-            </table>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="proses_tambah.php" method="post">
+                        <div class="form-group">
+                            <label for="nama">Nama</label>
+                            <input type="name" name="nama" required class="form-control" id="nama">
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="name" name="username" required class="form-control" id="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" required class="form-control" id="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="jabatan">Jabatan</label>
+                            <input type="name" name="jabatan" required class="form-control" id="jabatan">
+                        </div>
 
+                        <div class="form-group">
+                            <button class="btn btn-success" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    </form>
-</body>
-</html>
+</div>
+<!-- /.container-fluid -->
+
+<?php require_once('../template/foot.php') ?>

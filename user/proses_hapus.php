@@ -4,7 +4,7 @@
 
     $id =$_GET['id'];
 
-    mysqli_query($conn, "delete from user where id='$id'");
+    mysqli_query($conn, "DELETE FROM user WHERE id='$id'");
 
     header('location:index.php');
 

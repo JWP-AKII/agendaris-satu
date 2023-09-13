@@ -1,13 +1,14 @@
  <?php
- 
-    include '../conn.php';
 
-    $username =$_POST['username'];
-    $password =$_POST['password'];
-    $jabatan =$_POST['jabatan'];
+   include '../conn.php';
 
-    mysqli_query($conn, "insert into user values('', '$username', '$password', '$jabatan', '')");
+   $nama = $_POST['nama'];
+   $username = $_POST['username'];
+   $password = sha1($_POST['password']);
+   $jabatan = $_POST['jabatan'];
 
-    header('location:index.php');
- 
- ?>
+   mysqli_query($conn, "INSERT INTO user(nama,username,password,jabatan) VALUES('$nama', '$username', '$password', '$jabatan')");
+
+   header('location:index.php');
+
+   ?>

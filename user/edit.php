@@ -1,56 +1,53 @@
+<?php require_once('../template/head.php') ?>
 
+<?php require_once('../template/menu.php') ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?php
-    
-        include '../conn.php';
+<?php
 
-        $id =$_GET['id'];
-        $data=mysqli_query($conn, "select * from user where id='$id'");
-        
-        while($d=mysqli_fetch_array($data)) { ?>
+$id = $_GET['id'];
 
-    <form action="proses_edit.php" method="post">
-        <table>
-            <tr>
-                <td>Username</td>
-                <td>
-                    <input type="hidden" name="id" value="<?php echo $d['id']; ?>">
-                    <input type="text" name="username" value="<?php echo $d['username']; ?>">
-                </td>
-            </tr>
+$dataQuery = mysqli_query($conn, "SELECT * FROM user WHERE id = '$id'");
+$data = mysqli_fetch_object($dataQuery);
 
-            <tr>
-                <td>Password</td>
-                <td>
-                    <input type="text" name="password" value="<?php echo $d['password']; ?>">
-                </td>
-            </tr>
+?>
 
-            <tr>
-                <td>Jabatan</td>
-                <td>
-                    <input type="text" name="jabatan" value="<?php echo $d['jabatan']; ?>">
-                </td>
-            </tr>
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
-            <tr>
-                <td></td>
-                <td>
-                    <input type="submit" value="SIMPAN">
-                </td>
-            </tr>
-        </table>
-    </form>
+    <!-- Page Heading -->
+    <h1 class="h3 mb-4 text-gray-800">Tambah User</h1>
 
-    <?php } ?>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="proses_edit.php?id=<?= $id ?>" method="post">
+                        <div class="form-group">
+                            <label for="nama">Nama</label>
+                            <input type="name" name="nama" value="<?= $data->nama ?>" required class="form-control" id="nama">
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="name" name="username" value="<?= $data->username ?>" required class="form-control" id="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password (Opsional)</label>
+                            <input type="password" name="password" class="form-control" id="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="jabatan">Jabatan</label>
+                            <input type="name" name="jabatan" value="<?= $data->jabatan ?>" required class="form-control" id="jabatan">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-</body>
-</html>
+</div>
+<!-- /.container-fluid -->
+
+<?php require_once('../template/foot.php') ?>
