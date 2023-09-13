@@ -57,7 +57,19 @@ $result= mysqli_fetch_assoc($data);
                 
                 <div class= "form-group">
                     <label for="buku_id">Buku</label>
-                    <input type="text" name="buku_id" class="form-control" value="<?php echo $result['buku_id']?>">
+                    <select name="buku_id" class="form-control">
+
+                    <?php 
+                    $sql = "SELECT * FROM buku";
+                    $data = mysqli_query($conn, $sql);
+                    while ($tampil = mysqli_fetch_assoc($data)) {
+                    ?>
+                        <option <?php echo ($result['buku_id'] == $tampil['id'] ) ? 'selected' : '' ; ?> value="<?php echo $tampil['id'] ?>"> <?php echo $tampil['nama'] ?></option>
+                    <?php
+                    }
+                    ?>
+                    
+                    </select>
                 </div>
                 
                 <div class= "form-group-option">
